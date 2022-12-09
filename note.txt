@@ -33,4 +33,8 @@ A: var x = 5; var x;
 Q: arrow function?
 A:  常规函数中,this可指向window, the document ...
 Arrow function总是指向定义了箭头函数的对象
+
 https://www.w3schools.com/js/js_arrow_function.asp#:~:text=In%20short%2C%20with%20arrow%20functions,that%20defined%20the%20arrow%20function.
+
+Q:什么是React component
+A:Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML. Components come in two types, Class components and Function components
