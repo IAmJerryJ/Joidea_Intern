@@ -1,0 +1,36 @@
+Q: Flex布局和Grid布局区别:
+A: Flexbox 是一维布局系统，适合做局部布局，比如导航栏组件。
+Grid 是二维布局系统，通常用于整个页面的规划
+
+Grid 布局：
+- 固定和灵活的轨道尺寸；
+- 可以使用行号，名称或通过定位网格区域将项目放置在网格上的精确位置；
+- 可以将多个项目放入网格单元格或区域中，它们可以彼此部分重叠。
+
+Q: Grid-template-columns是什么意思？
+A: Grid-template-columns是指每个格子占的空间大小
+
+Q: 什么是FR unit在grid布局中？
+A: fr unit指剩下所空出的空间
+
+Q: Flex 布局
+A: Flex布局必须有一个父元素display: flex
+
+Q: 什么是React
+A: react.js是一个client-side JavaScript library，建造modern ractive 用户界面给网站。
+
+为了简化开发流程，传统JavaScript DOM(Document Objectt Model)操作界面流程过于复杂。
+
+Q: var, let, const?
+A: var是global的，let和const是作用于局部作用域
+var可以更新或者重新声明; let可以更新，不可以重新声明; const都不可以;
+
+var和let可以不用初始化，const必须初始化数值
+
+Q: re-delcare?
+A: var x = 5; var x;
+
+Q: arrow function?
+A:  常规函数中,this可指向window, the document ...
+Arrow function总是指向定义了箭头函数的对象
+https://www.w3schools.com/js/js_arrow_function.asp#:~:text=In%20short%2C%20with%20arrow%20functions,that%20defined%20the%20arrow%20function.
