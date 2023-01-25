@@ -1,10 +1,14 @@
-import ToDo from "./components/ToDo";
+import TodosContextProvider from "./store/todo-context";
+
+import NewToDo from "./components/NewToDo";
+import ToDos from "./components/ToDos";
 
 function App() {
   return (
-    <div>
-      <ToDo items={["Learn React", "Learn TypeScript"]} />
-    </div>
+    <TodosContextProvider>
+      <NewToDo />
+      <ToDos />
+    </TodosContextProvider>
   );
 }
 
