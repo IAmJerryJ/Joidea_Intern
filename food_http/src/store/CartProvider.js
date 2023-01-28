@@ -62,33 +62,34 @@ const cartReducer = (state, action) => {
     };
   }
   if (action.type === "REMOVE") {
-    // const prevItems = state.items;
-    // const existingItem = prevItems[prevItems.findIndex((item) => item.id === action.id)];
-    // const totalAmount = state.totalAmount - existingItem.price;
-    // const removeItems = prevItems.filter((item) => item.id !== action.id);
-    // const minusItems = prevItems.map((x) =>
-    //   x.id === existingItem.id ? { ...x, amount: x.amount - 1 } : x
-    // );
-    // const items = existingItem.amount === 1 ? removeItems : minusItems;
-    // return { items, totalAmount };
+    const existingItem =
+      state.items[state.items.findIndex((item) => item.id === action.id)];
+    const totalAmount = state.totalAmount - existingItem.price;
+    let items;
+    existingItem.amount === 1
+      ? (items = state.items.filter((item) => item.id !== action.id))
+      : (items = state.items.map((x) =>
+          x.id === existingItem.id ? { ...x, amount: x.amount - 1 } : x
+        ));
+    return { items, totalAmount };
 
-    const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.id
-    );
-    const existingItem = state.items[existingCartItemIndex];
-    const updatedTotalAmount = state.totalAmount - existingItem.price;
-    let updatedItems;
-    if (existingItem.amount === 1) {
-      updatedItems = state.items.filter((item) => item.id !== action.id);
-    } else {
-      const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
-      updatedItems = [...state.items];
-      updatedItems[existingCartItemIndex] = updatedItem;
-    }
-    return {
-      items: updatedItems,
-      totalAmount: updatedTotalAmount,
-    };
+    // const existingCartItemIndex = state.items.findIndex(
+    //   (item) => item.id === action.id
+    // );
+    // const existingItem = state.items[existingCartItemIndex];
+    // const updatedTotalAmount = state.totalAmount - existingItem.price;
+    // let updatedItems;
+    // if (existingItem.amount === 1) {
+    //   updatedItems = state.items.filter((item) => item.id !== action.id);
+    // } else {
+    //   const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
+    //   updatedItems = [...state.items];
+    //   updatedItems[existingCartItemIndex] = updatedItem;
+    // }
+    // return {
+    //   items: updatedItems,
+    //   totalAmount: updatedTotalAmount,
+    // };
   }
 
   if (action.type === "CLEAR") {
