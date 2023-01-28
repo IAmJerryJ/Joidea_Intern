@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 
 const CartItem = (props) => {
+  //解构
   const { title, quantity, total, price, id } = props.item;
   const dispatch = useDispatch();
 

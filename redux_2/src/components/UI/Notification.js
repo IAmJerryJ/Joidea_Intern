@@ -1,6 +1,8 @@
 import classes from "./Notification.module.css";
 
 const Notification = (props) => {
+  // let specialClasses = props.status === "error" ? classes.error : classes.success;
+
   let specialClasses = "";
 
   if (props.status === "error") {

@@ -13,6 +13,7 @@ const cartSlice = createSlice({
       state.totalQuantity = action.payload.totalQuantity;
     },
     addItemToCart(state, action) {
+      //除了初次replce cart之外，state有改变，所以要发送数据请求
       state.changed = true;
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);

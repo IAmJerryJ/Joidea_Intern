@@ -3,7 +3,8 @@ import classes from "./Cart.module.css";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
 
-const Cart = (props) => {
+const Cart = () => {
+  //item是从cart state的initialState提取
   const items = useSelector((state) => state.cart.items);
   return (
     <Card className={classes.cart}>
