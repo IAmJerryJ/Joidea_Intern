@@ -3,6 +3,10 @@ import { cartActions } from "./cart-slice";
 import { uiActions } from "./ui-slice";
 
 export const fetchCartData = () => {
+  //因为fetch函数是个异步操作，所以需要在函数前加上async
+
+  //redux thunk使我们可以在action中返回函数，而不只是一个对象。当redux toolkit发现返回的是一个函数时，
+  //他会帮助执行这个函数。当返回的函数中(inner function)接受的是dispatch参数时，我们就可以在返回函数中使用dispatch
   return async (dispatch) => {
     const fetchRequest = async () => {
       const response = await fetch(
@@ -44,6 +48,7 @@ export const fetchCartData = () => {
 
 export const sendCartData = (cart) => {
   return async (dispatch) => {
+    //传输过程中...
     dispatch(
       uiActions.showNotification({
         status: "pending",
@@ -56,6 +61,7 @@ export const sendCartData = (cart) => {
       const response = await fetch(
         "https://reduxcart-dbb74-default-rtdb.firebaseio.com/cart.json",
         {
+          //PUT是请求增加方法
           method: "PUT",
           body: JSON.stringify({
             items: cart.items,
