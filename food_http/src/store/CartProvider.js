@@ -65,22 +65,24 @@ const cartReducer = (state, action) => {
     const existingItem =
       state.items[state.items.findIndex((item) => item.id === action.id)];
     const totalAmount = state.totalAmount - existingItem.price;
-    const items = state.items.reduce((previousItems, currentItem) => {
-      if (existingItem.id === currentItem.id) {
-        currentItem.amount > 1 ? currentItem.amount-- : (currentItem = null);
-      }
-      if (currentItem) previousItems.push(currentItem);
-      return previousItems;
-    }, []);
-    return { items, totalAmount };
-
-    // let items;
-    // existingItem.amount === 1
-    //   ? (items = state.items.filter((item) => item.id !== action.id))
-    //   : (items = state.items.map((x) =>
-    //       x.id === existingItem.id ? { ...x, amount: x.amount - 1 } : x
-    //     ));
+    // const items = state.items.reduce((previousItems, currentItem) => {
+    //   if (existingItem.id === currentItem.id) {
+    //     currentItem.amount > 1 ? currentItem.amount-- : (currentItem = null);
+    //   }
+    //   if (currentItem) previousItems.push(currentItem);
+    //   return previousItems;
+    // }, []);
     // return { items, totalAmount };
+
+    let items;
+    if (existingItem.amount === 1)
+      items = state.items.filter((item) => item.id !== action.id);
+    else {
+      items = state.items.map((x) =>
+        x.id === existingItem.id ? { ...x, amount: x.amount - 1 } : x
+      );
+    }
+    return { items, totalAmount };
     //------------------------------------------
     // const existingCartItemIndex = state.items.findIndex(
     //   (item) => item.id === action.id

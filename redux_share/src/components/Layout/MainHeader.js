@@ -7,11 +7,8 @@ const MainHeader = () => {
       <h1>ReduxCart</h1>
       <nav>
         {/*为什么用ul？ */}
-        <ul>
-          <li>
-            <CartButton />
-          </li>
-        </ul>
+
+        <CartButton />
       </nav>
     </header>
   );

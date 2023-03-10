@@ -1,8 +1,18 @@
 import { Effect, Reducer, request, Subscription } from 'umi';
 
+interface ItemProps {
+  item_id: number;
+  item_name: string;
+  item_type: number;
+  price: number;
+  total_price: number;
+  des1: string;
+}
+
 export interface ItemModelState {
   name: string;
-  items: [];
+  items: ItemProps[];
+  filterKey: number;
 }
 
 export interface ItemModelType {
@@ -24,6 +34,7 @@ const ItemModel: ItemModelType = {
   state: {
     name: 'item',
     items: [],
+    filterKey: 0,
   },
 
   effects: {

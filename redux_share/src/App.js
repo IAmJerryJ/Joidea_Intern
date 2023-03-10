@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     //第一次渲染提取database中购物车数据，dependecy是dispatch，因为dispatch来自第三方库，可能会有所改变
     dispatch(fetchCartData());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     //第一次渲染不发送购物车内数据，只提取
@@ -31,7 +31,7 @@ function App() {
     if (cart.changed) {
       dispatch(sendCartData(cart));
     }
-  }, [cart, dispatch]);
+  }, [cart]);
 
   return (
     <Fragment>

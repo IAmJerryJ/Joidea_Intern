@@ -33,6 +33,7 @@ function EventDetailPage() {
 export default EventDetailPage;
 
 async function loadEvent(id) {
+  //根据路由，动态加载数据
   const response = await fetch("http://localhost:8080/events/" + id);
 
   if (!response.ok) {
@@ -68,7 +69,9 @@ async function loadEvents() {
   }
 }
 
+//使用useRouterLoader自带的两个参数，request和params
 export async function loader({ request, params }) {
+  //浏览器的路由param参数
   const id = params.eventId;
 
   return defer({

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import classes from "./Product.module.css";
 
 function ProductsPage() {
   const PRODUCTS = [
@@ -13,7 +14,14 @@ function ProductsPage() {
       <ul>
         {PRODUCTS.map((prod) => (
           <li key={prod.id}>
-            <Link to={prod.id}>{prod.title}</Link>
+            <NavLink
+              to={`/products/ ${prod.id}`}
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              {prod.title}
+            </NavLink>
           </li>
         ))}
       </ul>

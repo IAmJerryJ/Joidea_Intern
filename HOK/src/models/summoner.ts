@@ -1,8 +1,15 @@
 import { Effect, Reducer, request, Subscription } from 'umi';
 
+interface SummonerProps {
+  summoner_id: number;
+  summoner_name: string;
+  summoner_rank: string;
+  summoner_description: string;
+}
+
 export interface SummonerModelState {
   name: string;
-  summoners: [];
+  summoners: SummonerProps[];
 }
 
 export interface SummonerModelType {
@@ -33,7 +40,7 @@ const SummonerModel: SummonerModelType = {
       yield put({
         type: 'save',
         payload: {
-          items: data,
+          summoners: data,
         },
       });
     },
@@ -49,7 +56,7 @@ const SummonerModel: SummonerModelType = {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
-        if (pathname === '/item') {
+        if (pathname === '/summoner') {
           dispatch({
             type: 'fetch',
           });

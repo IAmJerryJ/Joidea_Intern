@@ -1,6 +1,6 @@
 import { Effect, Reducer, request, Subscription } from 'umi';
 
-interface HeroProps {
+export interface HeroProps {
   ename: number;
   cname: string;
   title: string;
@@ -12,6 +12,9 @@ interface HeroProps {
 export interface HeroModelState {
   name: string;
   heros: HeroProps[];
+  filterKey: number;
+  freeheros: HeroProps[];
+  itemHover: number;
 }
 
 export interface HeroModelType {
@@ -33,6 +36,9 @@ const HeroModel: HeroModelType = {
   state: {
     name: 'hero',
     heros: [],
+    filterKey: 0,
+    freeheros: [],
+    itemHover: 0,
   },
 
   effects: {
@@ -40,28 +46,21 @@ const HeroModel: HeroModelType = {
     //function type: any
     *fetch({ type, payload }, { put, call, select }): any {
       const data = yield request('/api/herolist.json');
-      const localData = [
-        {
-          ename: 105,
-          cname: '廉颇',
-          title: '正义爆轰',
-          new_type: 0,
-          hero_type: 3,
-          skin_name: '正义爆轰|地狱岩魂',
+      const freeheros = yield request('/apimock/freeheros.json', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
         },
-        {
-          ename: 106,
-          cname: '小乔',
-          title: '恋之微风',
-          new_type: 0,
-          hero_type: 2,
-          skin_name: '恋之微风|万圣前夜|天鹅之梦|纯白花嫁|缤纷独角兽',
-        },
-      ];
+        body: JSON.stringify({
+          number: 10,
+        }),
+      });
       yield put({
         type: 'save',
         payload: {
-          heros: data || localData,
+          heros: data,
+          freeheros: freeheros,
         },
       });
     },

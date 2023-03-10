@@ -14,10 +14,10 @@ export default defineConfig({
   dva: {},
   fastRefresh: {},
   // proxy: {
-  //   '/api': {
-  //     target: 'https://pvp.qq.com',
+  //   '/api/': {
+  //     target: 'https://pvp.qq.com/',
   //     changeOrigin: true,
-  //     pathRewrite: { '^/api': '' },
+  //     pathRewrite: { '^/api/': '' },
   //   },
   // },
 });

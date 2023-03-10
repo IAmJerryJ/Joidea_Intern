@@ -26,20 +26,25 @@ import HomePage from "./Pages/HomePage";
 import EventsPage, { loader as eventsLoader } from "./Pages/Events";
 import EventDetailPage, {
   loader as eventsDetailLoader,
-  action as deleteEventAction
+  action as deleteEventAction,
 } from "./Pages/EventDetailPage";
 import NewEventPage from "./Pages/NewEventPage";
 import EditEventPage from "./Pages/EditEventPage";
 import EventsRootLayout from "./Pages/EventRoot";
 import ErrorPage from "./Pages/Error";
-import {action as manipulateEventAction } from './components/EventForm'
+import { action as manipulateEventAction } from "./components/EventForm";
 
 const router = createBrowserRouter([
   {
+    //首页
     path: "/",
+    //基本外观
     element: <RootLayout />,
+    //错误页面
     errorElement: <ErrorPage />,
+    //子路由
     children: [
+      //index：true，表示是当前路由下的首页，element就是路由导向的页面
       { index: true, element: <HomePage /> },
       {
         path: "events",
@@ -48,15 +53,18 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <EventsPage />,
+            //页面刚加载时，需要加载的数据函数
             loader: eventsLoader,
           },
           {
             path: "new",
             element: <NewEventPage />,
+            //页面刚加载时，需要加载的action函数，一些操作，比如http请求等
             action: manipulateEventAction,
           },
           {
             path: ":eventId",
+            //路径标识符
             id: "event-detail",
             loader: eventsDetailLoader,
             children: [
@@ -79,6 +87,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  //使用router，传入上面配置好的路由参数
   return <RouterProvider router={router} />;
 }
 
